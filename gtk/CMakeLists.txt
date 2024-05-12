@@ -1,9 +1,5 @@
 project(trgtk)
 
-if(WITH_LIBAPPINDICATOR)
-    add_definitions(-DHAVE_LIBAPPINDICATOR)
-endif()
-
 execute_process(
     COMMAND
         ${PKG_CONFIG_EXECUTABLE} gio-2.0 --variable glib_compile_resources
@@ -119,7 +115,7 @@ set(${PROJECT_NAME}_HEADERS
 include_directories(
     ${CMAKE_SOURCE_DIR}
     ${PROJECT_BINARY_DIR}
-    ${LIBAPPINDICATOR_INCLUDE_DIRS}
+    ${APPINDICATOR_INCLUDE_DIRS}
     ${GTK_INCLUDE_DIRS}
     ${CURL_INCLUDE_DIRS}
     ${EVENT2_INCLUDE_DIRS}
