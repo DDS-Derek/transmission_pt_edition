@@ -572,3 +572,9 @@ set(CPACK_SOURCE_IGNORE_FILES
 )
 
 include(CPack)
+
+include(CheckSymbolExists)
+check_symbol_exists(statvfs "sys/statvfs.h" HAVE_STATVFS)
+if(HAVE_STATVFS)
+  add_definitions(-DHAVE_STATVFS)
+endif()

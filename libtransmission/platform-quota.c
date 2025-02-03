@@ -481,14 +481,23 @@ static int64_t tr_getDiskFreeSpace(char const* path)
 
 #elif defined(HAVE_STATVFS)
 
+    // 添加头文件 <sys/statvfs.h>
+    #include <sys/statvfs.h>
+
     struct statvfs buf;
-    return statvfs(path, &buf) ? -1 : (int64_t)buf.f_bavail * (int64_t)buf.f_frsize;
+    if (statvfs(path, &buf) == 0) // 显式检查返回值
+    {
+        return (int64_t)buf.f_bavail * (int64_t)buf.f_frsize;
+    }
+    else
+    {
+        return -1; // 调用失败时返回 -1
+    }
 
 #else
 
-#warning FIXME: not implemented
-
-    return -1;
+    #warning FIXME: not implemented
+    return -1; // 显式返回错误
 
 #endif
 }
