@@ -1028,7 +1028,7 @@ static void torrentInit(tr_torrent* tor, tr_ctor const* ctor)
 
         it->next = tor;
     }
-    hashmap_set(session->torrentMap, &tor->uniqueId, sizeof(int), tor);
+    hashmap_set(session->torrentMap, &tor->uniqueId, sizeof(int), (uintptr_t)tor);
 
     /* if we don't have a local .torrent file already, assume the torrent is new */
     isNewTorrent = !tr_sys_path_exists(tor->info.torrent, NULL);
