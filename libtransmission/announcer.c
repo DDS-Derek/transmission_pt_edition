@@ -6,6 +6,7 @@
  *
  */
 
+#include <math.h>
 #include <limits.h> /* INT_MAX */
 #include <stdio.h>
 #include <stdlib.h> /* qsort() */
